@@ -988,7 +988,10 @@ static UWS_CLIENT_HANDLE create_websocket_client(char* url, char* authorizationT
             result = NULL;
         }
 #ifdef SET_TRUSTED_CERT_IN_SAMPLES
-        else if (uws_client_set_option(result, OPTION_TRUSTED_CERT, certificates) != 0)
+        else 
+{
+	LogInfo("LOOK MA! Im setting TRUSTED CERT on uws_client");
+	if (uws_client_set_option(result, OPTION_TRUSTED_CERT, certificates) != 0)
         {
             LogError("[TEST] Failed setting trusted certificate on uws_client");
             uws_client_destroy(result);
@@ -1007,6 +1010,9 @@ static UWS_CLIENT_HANDLE create_websocket_client(char* url, char* authorizationT
             uws_client_destroy(result);
             result = NULL;
         }
+#ifdef SET_TRUSTED_CERT_IN_SAMPLES
+}
+#endif
 
         free(hostAddress);
         free(resourceName);

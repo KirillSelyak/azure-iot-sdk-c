@@ -30,6 +30,7 @@ set(${theseTestsName}_h_files
 )
 
 if(${use_sample_trusted_cert})
+    message(STATUS "LOOK MA, IM USING WOLFSSL!!")
     add_definitions(-DSET_TRUSTED_CERT_IN_SAMPLES)
     include_directories(../../../certs)
 endif()
